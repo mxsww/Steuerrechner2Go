@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steuerrechner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+
+</head>
+<style>
+     body{
+        font-family: 'Abel', sans-serif;
+        background-color:rgb(253, 225, 252);
+        margin-left:35px;
+    }   
+    .headline{
+        color:rgb(129, 2, 129);
+    }
+    .Logo{
+        margin-left:1200px;
+        margin-top:375px;
+     }
+</style>
+<body>
+    <h1 class="headline">
+        Steuerrechner
+    </h1>
+          <form>
+            Einkommen: <input type="number" id="income"><br>
+            Steuerklasse:
+            <select id="taxClass" onchange="updateTaxRate()">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+            </select><br>
+            Steuersatz: <input type="number" id="taxRate" value=""><br>
+            <button type="button" onclick="calculateTax()">Berechne Steuer</button>
+          </form>
+          <p id="result"></p>
+      
+          <script>
+            function updateTaxRate() {
+              var taxClass = document.getElementById("taxClass").value;
+              var taxRateField = document.getElementById("taxRate");
+      
+              if (taxClass == "1") {
+                taxRateField.value = "0.14";
+              } else if (taxClass == "2") {
+                taxRateField.value = "0.245";
+              } else if (taxClass == "3") {
+                taxRateField.value = "0.22";
+              } else if (taxClass == "4") {
+                taxRateField.value = "0.25";
+              } else if (taxClass == "5") {
+                taxRateField.value = "0.26";
+              } else if (taxClass == "6") {
+                taxRateField.value = "0.25";
+              }
+            }
+      
+            function calculateTax() {
+              var income = document.getElementById("income").value;
+              var taxRate = document.getElementById("taxRate").value;
+      
+              if (isNaN(income) || isNaN(taxRate)) {
+                document.getElementById("result").innerHTML = "Ungültige Eingabe. Bitte geben Sie nur Zahlen ein.";
+                return;
+              }
+      
+              var tax = income * taxRate;
+              document.getElementById("result").innerHTML = "Die Steuer beträgt " + tax + ".";
+            }
+          </script>
+          <br>
+          <img class="Logo" src="Logo.png">
+        </body>
+      </html>
+      
+      
+
+       
+
+</body>
+</html>
